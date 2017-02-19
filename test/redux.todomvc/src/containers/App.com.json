@@ -1,0 +1,14 @@
+{
+  "$type": "div",
+  "$children": [
+    {
+      "$type": "Header",
+      "addTodo": "$0.actions.addTodo"
+    },
+    {
+      "$type": "MainSection",
+      "todos": "$0.todos",
+      "actions": "$0.actions"
+    }
+  ]
+}
