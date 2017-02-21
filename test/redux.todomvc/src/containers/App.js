@@ -5,12 +5,12 @@ import Header from '../components/Header'
 import MainSection from '../components/MainSection'
 import * as TodoActions from '../actions'
 
-import { hydrate } from '../react-com';
+import { hydrate, register } from 'react-com';
 import appJson from './App.com.json';
 
-const appFactory = { Header, MainSection };
+register({ Header, MainSection }); //register all custom components to react-com
 
-const App = ({todos, actions}) => hydrate(appJson, appFactory, [{todos, actions}]);
+const App = ({todos, actions}) => hydrate(appJson, [{todos, actions}]);
 
 const mapStateToProps = state => ({
   todos: state.todos
