@@ -1,21 +1,22 @@
 {
   "name": "react-com",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "",
-  "main": "src/react-com.transpiled.js",
+  "main": "dist/index.js",
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "react": "^15.4.2"
-  },
   "devDependencies": {
+    "react": "15.4.2",
     "babel-cli": "^6.23.0",
     "babel-preset-env": "^1.1.8"
   },
+  "peerDependencys": {
+    "react": "15.4.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "babel src/react-com.js --out-file dist/react-com.js"
+    "prepublish": "babel src/react-com.js --out-file dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -33,5 +34,9 @@
   "bugs": {
     "url": "https://github.com/Shawn-Cao/react-com/issues"
   },
-  "homepage": "https://github.com/Shawn-Cao/react-com#readme"
+  "homepage": "https://github.com/Shawn-Cao/react-com#readme",
+  "files": [
+    "dist",
+    "src"
+  ]
 }

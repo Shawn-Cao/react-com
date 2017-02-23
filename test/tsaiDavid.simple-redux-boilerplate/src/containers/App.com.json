@@ -1,0 +1,19 @@
+{
+  "$type": "div",
+  "className": "main-app-container",
+  "$children": [
+    {
+      "$type": "div",
+      "className": "main-app-nav",
+      "$children": "Simple Redux Boilerplate"
+    },
+    {
+      "$type": "Counter",
+      "counter": "$0.counter",
+      "action": "$0.actions"
+    },
+    {
+      "$type": "Footer"
+    }
+  ]
+}
