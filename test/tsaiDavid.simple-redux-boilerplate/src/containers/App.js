@@ -16,7 +16,7 @@ import appJson from './App.com.json.js';  // json loaders are not present, use .
  */
 class App extends Component {
   render() {
-    return hydrate(appJson, [this.props]);
+    return hydrate(appJson, this.props);
   }
   // render() {
   //   // we can use ES6's object destructuring to effectively 'unpack' our props

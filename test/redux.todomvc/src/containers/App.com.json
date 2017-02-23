@@ -3,12 +3,12 @@
   "$children": [
     {
       "$type": "Header",
-      "addTodo": "$0.actions.addTodo"
+      "addTodo": "$1.actions.addTodo"
     },
     {
       "$type": "MainSection",
-      "todos": "$0.todos",
-      "actions": "$0.actions"
+      "todos": "$1.todos",
+      "actions": "$1.actions"
     }
   ]
 }

@@ -6,7 +6,8 @@
   1.1. '$type'
   1.2. '$children'
 2. '$' in object values represent object reference:
-  1.1.  '$this.props.name'
+  2.1.  '$0[.<...keys>]' reference the base .json object. (NOTE: for now, only the same object being inspected is referencable. 'up' or 'down' the object tree seems to require some complicated logic)
+  2.2.  '$1', '$2' refers to extra parameters passed in. typical use case includes passing this.props as $1
 
 ## validation rules
 

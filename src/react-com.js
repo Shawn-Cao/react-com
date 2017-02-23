@@ -1,17 +1,27 @@
 import React from 'react';
 
+/**
+ * a map contains all custom React components, keeping this as react-com internal state
+ */
 const componentsFactory = {};
+
+function parseStringRef(str, refArgs) {
+  if (typeof str === 'string' && str.startsWith('$')) {
+    return str.substr(1).split('.').reduce((accu, token) => accu[token], refArgs); // eg. arguments[1]['actions']['addTodo']
+  } else {
+    return str;
+  }
+}
 
 /**
  * This is the functionality to map an JS object to React components tree
  * @param {object} jsonObj - a plain JS described by primitives, which is losslessly serializabled to JSON format
- * @param {object} componentsFactory - a map contains all custom React components
- * @param {array} argumentsContext - similar to js function arguments, TODO: try pass this from scope?
- * @example App = ({todos, actions}) => hydrate(appJson, appFactory, [{todos, actions}]);
+ * @param {array} arguments - js function arguments, to handle extra arguments. eg. $0 is jsonOjb, $1 is props
+ * @example App = ({todos, actions}) => hydrate(appJson, {todos, actions});
  */
-export function hydrate(jsonObj, argumentsContext) {
+export function hydrate(jsonObj, ...restArgs) {
   if (Array.isArray(jsonObj)) {  // in case of indexed childe components (array of array in jsonObj)
-    return jsonObj.map(obj => hydrate(obj, argumentsContext));
+    return jsonObj.map(obj => hydrate(obj, ...restArgs)); // breaks $0
   }
   let type, props = {}, children = [];
   Object.keys(jsonObj).forEach((key) => {
@@ -21,14 +31,10 @@ export function hydrate(jsonObj, argumentsContext) {
         type = componentsFactory[value] || value; // assume user does NOT override React-dom components like 'div'
         break;
       case '$children':  // hydrate children
-        children = value;
+        children = parseStringRef(value, [jsonObj, ...restArgs]);
         break;
       default:           // hydrate props
-        if (typeof value === 'string' && value.startsWith('$')) {
-          props[key] = value.substr(1).split('.').reduce((accu, token) => accu[token], argumentsContext); // eg. arguments[0]['actions']['addTodo']
-        } else {
-          props[key] = value;
-        }
+        props[key] = parseStringRef(value, [jsonObj, ...restArgs]);
     }
   });
   if (!type) { throw new Error('failed to review/hydrate React COM: type must be defined with \'$type\'!'); } // or we could default '$type=\'div\''?
@@ -48,7 +54,7 @@ export function hydrate(jsonObj, argumentsContext) {
     return React.createElement(
       type,
       props,
-      ...children.map(childJsonObj => hydrate(childJsonObj, argumentsContext))
+      ...children.map(childJsonObj => hydrate(childJsonObj, ...restArgs)) // breaks $0
     )
   }
 }

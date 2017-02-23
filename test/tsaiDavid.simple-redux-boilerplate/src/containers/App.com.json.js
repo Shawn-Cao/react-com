@@ -5,12 +5,14 @@ export default {
     {
       "$type": "div",
       "className": "main-app-nav",
-      "$children": "Simple Redux Boilerplate"
+      "hidden-attr": "not that simple Boilerplate",
+      // "$children": "Simple Redux Boilerplate",
+      "$children": "$0.hidden-attr"
     },
     {
       "$type": "Counter",
-      "counter": "$0.counter",
-      "actions": "$0.actions"
+      "counter": "$1.counter",
+      "actions": "$1.actions"
     },
     {
       "$type": "Footer"

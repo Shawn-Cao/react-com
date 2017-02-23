@@ -10,7 +10,7 @@ import appJson from './App.com.json';
 
 register({ Header, MainSection }); //register all custom components to react-com
 
-const App = ({todos, actions}) => hydrate(appJson, [{todos, actions}]);
+const App = ({todos, actions}) => hydrate(appJson, {todos, actions});
 
 const mapStateToProps = state => ({
   todos: state.todos
