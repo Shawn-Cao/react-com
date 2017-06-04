@@ -22,7 +22,7 @@ JavaScript objects tree and described as extended JSON, adding below features:
 
 ## Approaches:
 
-1. Try apply to Cvent's React application editor framework and see how can that be simplified.
+1. Try apply to React application editor type of frameworks and see how can that be simplified.
 2. read Inferno framework source code and understand how it performs better using a React-like components model.
 
 ## Learning Notes:
